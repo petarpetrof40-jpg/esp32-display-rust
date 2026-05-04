@@ -1,0 +1,11 @@
+# Build artifacts
+/target/
+
+# esp-idf managed components (downloaded at build time)
+/managed_components/
+
+# esp-idf build directory
+/.embuild/
+
+# Environment exports from espup
+export-esp.sh
