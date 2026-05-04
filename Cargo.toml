@@ -1,0 +1,52 @@
+[package]
+name = "esp32-display-rust"
+version = "0.1.0"
+edition = "2021"
+resolver = "2"
+description = "ESP32-2432S024 demo with ST7789 display and XPT2046 touchscreen"
+
+[[bin]]
+name = "esp32-display-rust"
+harness = false
+
+[profile.release]
+opt-level = "s"
+
+[profile.dev]
+debug = true
+opt-level = "z"
+
+# Feature flags forwarded to esp-idf-svc
+[features]
+default = ["std", "esp-idf-svc/native"]
+std = ["alloc", "esp-idf-svc/binstart", "esp-idf-svc/std"]
+alloc = ["esp-idf-svc/alloc"]
+
+[dependencies]
+# Logging via the log crate, bridged to ESP-IDF logging
+log = { version = "0.4", default-features = false }
+
+# ESP-IDF high-level services (provides startup, logging, etc.)
+esp-idf-svc = { version = "0.50", default-features = false }
+
+# ESP-IDF hardware abstraction layer (SPI, GPIO, delay, …)
+esp-idf-hal = { version = "0.43" }
+
+# embedded-hal 1.0 traits (SpiDevice, OutputPin, InputPin, DelayNs)
+embedded-hal = { version = "1.0" }
+
+# SPI display interface that bridges embedded-hal SpiDevice → display-interface
+display-interface-spi = { version = "0.5" }
+
+# ST7789 / mipidsi driver (supports ST7789 model)
+mipidsi = { version = "0.8" }
+
+# 2-D graphics primitives, text rendering, colour types
+embedded-graphics = { version = "0.8", features = ["mono_font"] }
+
+# Convenience error type for returning errors from main()
+anyhow = { version = "1.0", features = ["std"] }
+
+[build-dependencies]
+# Generates the linker script and sysenv bindings for ESP-IDF
+embuild = "0.32"
