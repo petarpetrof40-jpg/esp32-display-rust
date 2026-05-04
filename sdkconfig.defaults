@@ -1,0 +1,11 @@
+# Increase main task stack size to 8KB for display/touch operations
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=8000
+
+# Use 1000 Hz FreeRTOS tick rate for better timing accuracy
+CONFIG_FREERTOS_HZ=1000
+
+# Log level: Info
+CONFIG_LOG_DEFAULT_LEVEL_INFO=y
+
+# UART0 for monitoring at 115200 baud (default, but explicit)
+CONFIG_ESP_CONSOLE_UART_BAUDRATE=115200

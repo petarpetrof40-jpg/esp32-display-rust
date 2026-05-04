@@ -1,0 +1,38 @@
+[package]
+name = "esp32-display-rust"
+version = "0.1.0"
+authors = []
+edition = "2021"
+resolver = "2"
+
+[[bin]]
+name = "esp32-display-rust"
+harness = false
+
+[profile.release]
+opt-level = "s"
+
+[profile.dev]
+debug = true
+opt-level = "z"
+
+[dependencies]
+# ESP-IDF services (provides std, binstart entry point, logging)
+esp-idf-svc = { version = "0.48", default-features = false, features = ["binstart"] }
+# ESP-IDF HAL for GPIO, SPI, UART peripherals
+esp-idf-hal = "0.43"
+# embedded-hal 1.0 traits
+embedded-hal = "1.0"
+# 2D graphics library
+embedded-graphics = "0.8"
+# Display driver supporting ST7789
+mipidsi = "0.8"
+# SPI interface adapter for display-interface + embedded-hal
+display-interface-spi = "0.5"
+# Logging facade
+log = { version = "0.4", default-features = false }
+# Error handling
+anyhow = { version = "1", features = ["std"] }
+
+[build-dependencies]
+embuild = "0.31.3"
