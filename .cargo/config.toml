@@ -1,0 +1,15 @@
+[build]
+target = "xtensa-esp32-espidf"
+
+[target.xtensa-esp32-espidf]
+linker = "ldproxy"
+# Enable the 64-bit time_t on ESP-IDF
+rustflags = ["--cfg", "espidf_time64"]
+runner = "espflash flash --monitor"
+
+[unstable]
+build-std = ["std", "panic_abort"]
+
+[env]
+# ESP-IDF version to use. Pin to a stable release tag.
+ESP_IDF_VERSION = "v5.2.3"

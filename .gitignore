@@ -1,0 +1,5 @@
+# Rust build artefacts
+/target/
+
+# embuild / ESP-IDF download cache
+.embuild/
